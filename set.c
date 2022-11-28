@@ -108,7 +108,8 @@ SetNode Search(struct set_table *table, char *key, const size_t key_len)
 }
 SetNode Removal(struct set_table *table, char *key, const size_t key_len)
 {
-    SetNode current = table->nodes[GetIndex(table, key, key_len)];
+    int index = GetIndex(table, key, key_len);
+    SetNode current = table->nodes[index];
     SetNode prev;
     while (current->key != key)
     {
@@ -116,8 +117,11 @@ SetNode Removal(struct set_table *table, char *key, const size_t key_len)
         current = current->next;
         if(!current)return NULL;
     }
-    if(prev)
+    if(prev){
         prev->next = current->next;
+
+    }
+    table->nodes[index] = current->next;
     current->next = NULL;
     return current;
 }
@@ -132,6 +136,8 @@ SetNode Removal(struct set_table *table, char *key, const size_t key_len)
 //    set_insert(table, "Last Item of the Linked List", hashmap_size);
 //
 //    SetNode a = Search(table, "Test001", hashmap_size);
+//    printf("%s", a->key);
+//    a = Removal(table, "Test001", hashmap_size);
 //    printf("%s", a->key);
 //
 //    return 0;
