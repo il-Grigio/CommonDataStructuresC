@@ -109,11 +109,11 @@ DictionaryNode Search(struct Dictionary_table *table, char *key, const size_t ke
     }
     return NULL;
 }
-SetNode Removal(struct set_table *table, char *key, const size_t key_len)
+DictionaryNode Removal(struct Dictionary_table *table, char *key, const size_t key_len)
 {
     int index = GetIndex(table, key, key_len);
-    SetNode current = table->nodes[index];
-    SetNode prev;
+    DictionaryNode current = table->nodes[index];
+    DictionaryNode prev;
     while (current->key != key)
     {
         prev->next = current;
