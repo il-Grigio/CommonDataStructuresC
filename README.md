@@ -21,6 +21,10 @@ dictionarys:
 
 SetUp:
 ---
+download clang:
+
+    https://github.com/llvm/llvm-project/releases/download/llvmorg-15.0.2/LLVM-15.0.2-win64.exe
+
 commands:
 
   create the exe file:
